@@ -24,8 +24,9 @@ const App = () => {
 
   return (
     <div className="App">
-      {photos.map((photo) => (
+      {photos.map((photo, index) => ( // should change index for a real id 
         <PhotoListItem
+          key={index}
           id={photo.id}
           urls={photo.urls}
           location={photo.location}
