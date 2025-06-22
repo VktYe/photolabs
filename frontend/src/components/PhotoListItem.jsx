@@ -1,24 +1,24 @@
+import { Fragment } from "react";
 import "../styles/PhotoListItem.scss";
 
-const sampleDataForPhotoListItem = {
-  id: 1,
-  location: {
-    city: "Montreal",
-    country: "Canada",
-  },
-  urls: {
-    full: "/Image-1-Full.jpeg",
-    regular: "/Image-1-Regular.jpeg",
-  },
-  user: {
-    username: "exampleuser",
-    name: "Joe Example",
-    profile: "/profile-1.jpg",
-  },
-};
 
-const PhotoListItem = () => {
+
+const PhotoListItem = (props) => {
+  const {id, urls, user, location} = props.data;
+  console.log("PhotoListItem is loaded")
   /* Insert React */
+  return (
+    <Fragment key={id}>
+      <div >
+        <img src={urls.regular}></img>
+      </div>
+      <div>
+        <img src={user.profile}></img>
+        <p>{user.name}</p>
+        <p>{location.city} {location.country}</p>
+        </div>
+    </Fragment>
+  )
 };
 
 export default PhotoListItem;
