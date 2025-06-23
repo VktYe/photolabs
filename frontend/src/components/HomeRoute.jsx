@@ -1,11 +1,13 @@
 import PhotoList from "./PhotoList"
 import TopNavigation from "./TopNavigationBar"
 
-const HomeRoute = () => {
+const HomeRoute = ({photos, topics}) => {
+  console.log("Photos:", photos);
+  console.log("Topics:", topics)
   return (
     <div className="home-route">
-      <TopNavigation />
-      <PhotoList />
+      <TopNavigation topics={topics}/>
+      <PhotoList photos={photos}/>
     </div>
   )
 }
