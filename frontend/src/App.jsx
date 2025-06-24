@@ -28,7 +28,7 @@ const App = () => {
         topics={topics}
         clickedPhoto={setModal}
       />
-      {modal && <PhotoDetailsModal onClose={handleCloseModal}/>}
+      {modal && <PhotoDetailsModal onClose={handleCloseModal} photo={modal}/>}
     </div>
   );
 };
