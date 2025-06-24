@@ -11,8 +11,8 @@ const HomeRoute = ({photos, topics, favourites, toggleFavourites}) => {
         favourites={favourites}/>
       <PhotoList 
         photos={photos}
-        toggleFavourites={toggleFavourites}
         favourites={favourites}
+        toggleFavourites={toggleFavourites}
         />
     </div>
   )
