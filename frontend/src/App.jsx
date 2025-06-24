@@ -28,7 +28,13 @@ const App = () => {
         topics={topics}
         clickedPhoto={setModal}
       />
-      {modal && <PhotoDetailsModal onClose={handleCloseModal} photo={modal}/>}
+      {modal && <PhotoDetailsModal 
+        onClose={handleCloseModal} 
+        photo={modal} 
+        toggleFavourites={toggleFavourites}
+        favourites={favourites}
+        
+      />}
     </div>
   );
 };

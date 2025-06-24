@@ -26,3 +26,4 @@ const PhotoList = ({photos, favourites, toggleFavourites, clickedPhoto}) => {
 };
 
 export default PhotoList;
+// 
