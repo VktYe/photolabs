@@ -17,6 +17,7 @@ const App = () => {
   ) 
 }
  const [modal, setModal] = useState(null);
+ const handleCloseModal = () => setModal(null);
  
   return (
     <div className="App" >
@@ -27,7 +28,7 @@ const App = () => {
         topics={topics}
         clickedPhoto={setModal}
       />
-      {modal && <PhotoDetailsModal />}
+      {modal && <PhotoDetailsModal onClose={handleCloseModal}/>}
     </div>
   );
 };
