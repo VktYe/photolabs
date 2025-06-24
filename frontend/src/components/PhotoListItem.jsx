@@ -2,7 +2,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
-  const { id, urls, user, location, favourites, toggleFavourites } = props;
+  const { id, urls, user, location, favourites, toggleFavourites, clickedPhoto, photo } = props;
   console.log("PhotoListItem is loaded") // delete 
   console.log(id) //delete
   /* Insert React */
@@ -13,9 +13,9 @@ const PhotoListItem = (props) => {
         toggleFavourites={toggleFavourites}
         favourites={favourites}
         photoId={id}
-
+        
       />
-      <img className="photo-list__image" src={urls.regular}></img>
+      <img className="photo-list__image" src={urls.regular} onClick={() => clickedPhoto(photo)}></img>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={user.profile}></img>
         <div className="photo-list__user-info">{user.name}

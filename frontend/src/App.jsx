@@ -1,8 +1,9 @@
 import './App.scss';
-import HomeRoute from './components/HomeRoute';
+import HomeRoute from './routes/HomeRoute';
 import photos from './mocks/photos';
 import topics from './mocks/topics';
 import { useState } from 'react';
+import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 
 // Note: Rendering a single component to build components in isolation
@@ -15,7 +16,8 @@ const App = () => {
     : [...prev, photoId]
   ) 
 }
-
+ const [modal, setModal] = useState(null);
+ 
   return (
     <div className="App" >
       <HomeRoute 
@@ -23,7 +25,9 @@ const App = () => {
         favourites={favourites}
         photos={photos}
         topics={topics}
+        clickedPhoto={setModal}
       />
+      {modal && <PhotoDetailsModal />}
     </div>
   );
 };

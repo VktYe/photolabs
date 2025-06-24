@@ -3,7 +3,7 @@ import PhotoListItem from "./PhotoListItem";
 
 
 
-const PhotoList = ({photos, favourites, toggleFavourites}) => {
+const PhotoList = ({photos, favourites, toggleFavourites, clickedPhoto}) => {
 
   return (
     <ul className="photo-list">
@@ -17,6 +17,8 @@ const PhotoList = ({photos, favourites, toggleFavourites}) => {
           user={photo.user} 
           toggleFavourites={toggleFavourites}
           favourites={favourites}
+          clickedPhoto={clickedPhoto}
+          photo={photo}
         />
       ))}
     </ul>
