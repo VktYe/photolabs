@@ -1,13 +1,19 @@
 import PhotoList from "./PhotoList"
 import TopNavigation from "./TopNavigationBar"
 
-const HomeRoute = ({photos, topics}) => {
-  console.log("Photos:", photos);
-  console.log("Topics:", topics)
+const HomeRoute = ({photos, topics, favourites, toggleFavourites}) => {
+  console.log("Photos:", photos) // delete
+  console.log("Topics:", topics) // delete
   return (
     <div className="home-route">
-      <TopNavigation topics={topics}/>
-      <PhotoList photos={photos}/>
+      <TopNavigation 
+        topics={topics}
+        favourites={favourites}/>
+      <PhotoList 
+        photos={photos}
+        toggleFavourites={toggleFavourites}
+        favourites={favourites}
+        />
     </div>
   )
 }
