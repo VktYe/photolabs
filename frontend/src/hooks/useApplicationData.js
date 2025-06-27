@@ -39,15 +39,16 @@ export function reducer(state, action) {
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        modal: true
+        modal: true,
+        photoDetails: action.photo // display photo details
       }
 
-    case ACTIONS.DISPLAY_PHOTO_DETAILS:
-      return {
-        ...state,
-        photoDetails: action.photo
+    // case ACTIONS.DISPLAY_PHOTO_DETAILS:
+    //   return {
+    //     ...state,
+    //     photoDetails: action.photo
 
-      }
+    //   }
 
     case ACTIONS.CLOSE_PHOTO_DETAILS:
       return {
@@ -86,8 +87,7 @@ const useApplicationData = () => {
   }
 
   const onPhotoSelect = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO }); //open the modal
-    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, photo })
+    dispatch({ type: ACTIONS.SELECT_PHOTO, photo }); //open the modal
   }
 
   const onClosePhotoDetailsModal = () => {
