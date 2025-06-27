@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useReducer } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED', //hook need to pdate to dispatch actions
@@ -6,81 +7,105 @@ export const ACTIONS = {
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO', //hook need to update to dispatch actions
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS', 
+  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
 }
 
 export function reducer(state, action) {
   switch (action.type) {
-    case FAV_PHOTO_ADDED:
+    case ACTIONS.FAV_PHOTO_ADDED:
       return {
-        ...state, 
+        ...state,
         favourites: [...state.favourites, action.photoId]
       }
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
-    
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
+    case ACTIONS.FAV_PHOTO_REMOVED:
+      return {
+        ...state,
+        favourites: state.favourites.filter((id) => id !== action.photoId)
+      }
 
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
-    
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
+    case ACTIONS.SET_PHOTO_DATA:
+      return {
+        ...state,
+        photos: action.photos
+      }
 
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
+    case ACTIONS.SET_TOPIC_DATA:
+      return {
+        ...state,
+        topic: action.topic
+      }
 
-    case FAV_PHOTO_REMOVED:
-      return 
-      {/*insert all relevant actions as case statment */}
+    case ACTIONS.SELECT_PHOTO:
+      return {
+        ...state,
+        modal: action.photo
+      }
+
+    case ACTIONS.DISPLAY_PHOTO_DETAILS:
+      return {
+        ...state,
+        photoDetails: action.photo
+
+      }
+
+    case ACTIONS.CLOSE_PHOTO_DETAILS:
+      return {
+        ...state,
+        modal: null
+      }
+
+    default:
+      throw new Error(
+        `Tried to reduce with unsupported action type: ${action.type}`
+      )
   }
 
-  default: 
-    throw new Error(
-      `Tried to reduce with unsupported action type: ${action.type}`
-    )
 }
 
-// const useApplicationData = (initial) => {
-//   const [favourites, setFavourites] = useState([]);
-//   const [modal, setModal] = useState(null);
-//   const [topic, setTopic] = useState(null);
+const initialState = {
+  favourites: [],
+  photos: [],
+  topic: [],
+  modal: null,
+  photoDetails: null
+}
 
-//   const updateToFavPhotoIds = (photoId) => {
-//   setFavourites((prev) => 
-//     prev.includes(photoId) 
-//     ? prev.filter(id => id !== photoId)
-//     : [...prev, photoId]
-//   )
-// }
+const useApplicationData = () => {
 
-//   const onPhotoSelect = (photo) => setModal(photo); //open the modal
-//   const onClosePhotoDetailsModal = () => setModal(null); //close the modal
-//   const onLoadTopic = (topicId) => setTopic(topicId);
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  const updateToFavPhotoIds = (photoId) => {
+    if (state.favourites.includes(photoId)) {
+      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, photoId });
+    } else {
+      dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, photoId });
+    }
+
+  }
+
+  const onPhotoSelect = (photo) => {
+    dispatch({ type: ACTIONS.SELECT_PHOTO, photo }); //open the modal
+    dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, photo })
+  }
+
+  const onClosePhotoDetailsModal = () => {
+    dispatch({ type: ACTIONS.CLOSE_PHOTO_DETAILS })
+
+  }
+  const onLoadTopic = (topicId) => {
+    dispatch({ typeof: ACTIONS.SET_TOPIC_DATA, topic: topicId })
+  };
 
 
 
-
-//   const state = {
-//     favourites,
-//     modal, 
-//     topic
-//   }
-
-//   return {
-//     state,
-//     onPhotoSelect,
-//     updateToFavPhotoIds,
-//     onLoadTopic,
-//     onClosePhotoDetailsModal
-//   }
-// }
+  return {
+    state,
+    onPhotoSelect,
+    updateToFavPhotoIds,
+    onLoadTopic,
+    onClosePhotoDetailsModal
+  }
+}
 
 export default useApplicationData;
