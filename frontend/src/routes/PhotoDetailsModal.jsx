@@ -4,7 +4,7 @@ import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 
 
-const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, clikedPhoto }) => {
+const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, clickedPhoto }) => {
   console.log(photo)
   const similarPhotos = Object.values(photo.similar_photos)
 
@@ -40,7 +40,7 @@ const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, clike
         </div>
 
         <h3 className="photo-details-modal__images">Similar photos</h3>
-        <PhotoList 
+        <PhotoList
           photos={similarPhotos}
           photo={photo}
           toggleFavourites={toggleFavourites}

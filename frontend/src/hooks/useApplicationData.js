@@ -39,7 +39,7 @@ export function reducer(state, action) {
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
-        modal: action.photo
+        modal: true
       }
 
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
@@ -52,7 +52,8 @@ export function reducer(state, action) {
     case ACTIONS.CLOSE_PHOTO_DETAILS:
       return {
         ...state,
-        modal: null
+        modal: false,
+        photoDetails: null
       }
 
     default:
@@ -67,7 +68,7 @@ const initialState = {
   favourites: [],
   photos: [],
   topic: [],
-  modal: null,
+  modal: false,
   photoDetails: null
 }
 
@@ -85,7 +86,7 @@ const useApplicationData = () => {
   }
 
   const onPhotoSelect = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO, photo }); //open the modal
+    dispatch({ type: ACTIONS.SELECT_PHOTO }); //open the modal
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS, photo })
   }
 
@@ -94,7 +95,7 @@ const useApplicationData = () => {
 
   }
   const onLoadTopic = (topicId) => {
-    dispatch({ typeof: ACTIONS.SET_TOPIC_DATA, topic: topicId })
+    dispatch({ type: ACTIONS.SET_TOPIC_DATA, topic: topicId })
   };
 
 
