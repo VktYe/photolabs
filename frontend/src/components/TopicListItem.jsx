@@ -6,11 +6,11 @@ const sampleDataForTopicListItem = {
   label: "Nature",
 };
 
-const TopicListItem = ({topic}) => {
+const TopicListItem = ({topic, onLoadTopic}) => {
 
   return (
     <div key={topic.id} className="topic-list__item">
-      <span>
+      <span onClick={() => onLoadTopic(topic.id)}>
         {topic.title}
       </span>
       

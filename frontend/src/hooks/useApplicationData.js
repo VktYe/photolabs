@@ -109,7 +109,13 @@ const useApplicationData = () => {
 
   }
   const onLoadTopic = (topicId) => {
-    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicId })
+    fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
+      .then(response => response.json())
+      .then(data => {
+        console.log("fetch topic photos:", data);
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })})
+      .catch(err => console.error("Topic-specific photo data fetch error", err))
+    
   };
 
 
