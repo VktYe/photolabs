@@ -72,7 +72,7 @@ const useApplicationData = () => {
 
   
   useEffect(() => {
-    fetch('http://localhost:8001/api/photos')
+    fetch('/api/photos')
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
       .catch(err => console.error("Photo data fetch error", err));
@@ -80,7 +80,7 @@ const useApplicationData = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:8001/api/topics')
+    fetch('/api/topics')
       .then((response) => response.json())
       .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }))
       .catch(err => console.error("Topic data fetch error", err));
@@ -113,7 +113,7 @@ const useApplicationData = () => {
 
   // handles fetching photos under specific topic
   const onLoadTopic = (topicId) => {
-    fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
+    fetch(`api/topics/${topicId}/photos`)
       .then(response => response.json())
       .then(data => {
         console.log("fetch topic photos:", data);
