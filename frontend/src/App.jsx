@@ -1,6 +1,6 @@
 import './App.scss';
 import HomeRoute from './routes/HomeRoute';
-import photos from './mocks/photos';
+// import photos from './mocks/photos';
 import topics from './mocks/topics';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
@@ -15,7 +15,7 @@ const App = () => {
     onLoadTopic,
     onClosePhotoDetailsModal
   } = useApplicationData();
-  const { favourites, modal, photoDetails } = state;
+  const { favourites, modal, photoDetails, photoData } = state;
 
 
   return (
@@ -23,13 +23,14 @@ const App = () => {
       <HomeRoute
         toggleFavourites={updateToFavPhotoIds}
         favourites={favourites}
-        photos={photos}
+        photos={photoData}
         topics={topics}
         clickedPhoto={onPhotoSelect}
       />
       {modal && <PhotoDetailsModal
         onClose={onClosePhotoDetailsModal}
         photo={photoDetails}
+        photos={photoData}
         toggleFavourites={updateToFavPhotoIds}
         favourites={favourites}
         clickedPhoto={onPhotoSelect}

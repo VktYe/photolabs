@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
-export const ACTIONS = {
+ const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED', //hook need to pdate to dispatch actions
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
@@ -11,7 +10,7 @@ export const ACTIONS = {
   CLOSE_PHOTO_DETAILS: 'CLOSE_PHOTO_DETAILS'
 }
 
-export function reducer(state, action) {
+ function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.FAV_PHOTO_ADDED:
       return {
@@ -27,20 +26,20 @@ export function reducer(state, action) {
     case ACTIONS.SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.photos
+        photoData: action.payload
       }
 
     case ACTIONS.SET_TOPIC_DATA:
       return {
         ...state,
-        topic: action.topic
+        topicData: action.payload
       }
 
     case ACTIONS.SELECT_PHOTO:
       return {
         ...state,
         modal: true,
-        photoDetails: action.photo // display photo details
+        photoDetails: action.payload // display photo details
       }
 
     // case ACTIONS.DISPLAY_PHOTO_DETAILS:
@@ -67,15 +66,30 @@ export function reducer(state, action) {
 
 const initialState = {
   favourites: [],
-  photos: [],
-  topic: [],
   modal: false,
-  photoDetails: null
+  photoDetails: null,
+  photoData: [],
+  topicData: []
 }
 
 const useApplicationData = () => {
-
   const [state, dispatch] = useReducer(reducer, initialState)
+
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/photos')
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data}))
+      .catch(err => console.error("Photo data fetch error", err));
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:8001/api/topics')
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data}))
+      .catch(err => console.error("Topic data fetch error", err));
+  }, []);
+
 
   const updateToFavPhotoIds = (photoId) => {
     if (state.favourites.includes(photoId)) {
@@ -87,7 +101,7 @@ const useApplicationData = () => {
   }
 
   const onPhotoSelect = (photo) => {
-    dispatch({ type: ACTIONS.SELECT_PHOTO, photo }); //open the modal
+    dispatch({ type: ACTIONS.SELECT_PHOTO, payload: photo }); //open the modal
   }
 
   const onClosePhotoDetailsModal = () => {
@@ -95,7 +109,7 @@ const useApplicationData = () => {
 
   }
   const onLoadTopic = (topicId) => {
-    dispatch({ type: ACTIONS.SET_TOPIC_DATA, topic: topicId })
+    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicId })
   };
 
 
