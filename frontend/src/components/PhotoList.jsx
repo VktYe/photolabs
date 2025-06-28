@@ -3,22 +3,21 @@ import PhotoListItem from "./PhotoListItem";
 
 
 
-const PhotoList = ({photos, favourites, toggleFavourites, clickedPhoto}) => {
+const PhotoList = ({ photos, favourites, toggleFavourites, onPhotoSelect }) => {
 
   return (
     <ul className="photo-list">
-      {photos.map((photo)=> (
+      {photos.map((photo) => (
         <PhotoListItem
-          
           key={photo.id}
           id={photo.id}
           urls={photo.urls}
           location={photo.location}
-          user={photo.user} 
+          user={photo.user}
           toggleFavourites={toggleFavourites}
           favourites={favourites}
-          clickedPhoto={clickedPhoto}
-          photo={photo}
+          onPhotoSelect={onPhotoSelect}
+          photo={photo}              
         />
       ))}
     </ul>

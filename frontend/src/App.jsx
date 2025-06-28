@@ -25,18 +25,18 @@ const App = () => {
         favourites={favourites}
         photos={photoData}
         topics={topicData}
-        clickedPhoto={onPhotoSelect}
+        onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
       />
-      {modal && <PhotoDetailsModal
-        onClose={onClosePhotoDetailsModal}
+      {modal && (<PhotoDetailsModal
+        onCloseModal={onClosePhotoDetailsModal}
         photo={photoDetails}
         photos={photoData}
         toggleFavourites={updateToFavPhotoIds}
         favourites={favourites}
-        clickedPhoto={onPhotoSelect}
+        onPhotoSelect={onPhotoSelect}
 
-      />}
+      />)}
     </div>
   );
 };
