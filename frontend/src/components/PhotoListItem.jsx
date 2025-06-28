@@ -3,8 +3,8 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   const { id, urls, user, location, favourites, toggleFavourites, clickedPhoto, photo } = props;
-  console.log("PhotoListItem is loaded") // delete 
-  console.log(id) //delete
+  // console.log("PhotoListItem is loaded") // delete 
+  // console.log(id) //delete
   /* Insert React */
   return (
 

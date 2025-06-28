@@ -4,8 +4,8 @@ import FavIcon from './FavIcon';
 
 const PhotoFavButton = ({favourites, toggleFavourites, photoId}) => {
   
-  console.log("PhotoId", photoId)
-  console.log("Favourites:", favourites)
+  // console.log("PhotoId", photoId)
+  // console.log("Favourites:", favourites)
   return (
           
     <div className="photo-list__fav-icon"  onClick={() => toggleFavourites(photoId)}>
