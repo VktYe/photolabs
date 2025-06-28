@@ -4,11 +4,11 @@ import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 
 
-const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, clickedPhoto, photos }) => {
+const PhotoDetailsModal = ({ onCloseModal, photo, toggleFavourites, favourites, onPhotoSelect }) => {
 
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={onClose}>
+      <button className="photo-details-modal__close-button" onClick={onCloseModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
       <div className="photo-details-modal__top-bar">
@@ -38,13 +38,13 @@ const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, click
         </div>
 
         <h3 className="photo-details-modal__images">Similar photos</h3>
-        <PhotoList
-          photos={photos}
+       { <PhotoList
+          photos={photo.similar_photos}
           photo={photo}
           toggleFavourites={toggleFavourites}
           favourites={favourites}
-          clickedPhoto={clickedPhoto}
-        />
+          onPhotoSelect={onPhotoSelect}
+        />}
 
       </div>
     </div>
