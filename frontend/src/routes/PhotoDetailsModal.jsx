@@ -5,8 +5,6 @@ import PhotoFavButton from '../components/PhotoFavButton';
 
 
 const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, clickedPhoto, photos }) => {
-  // console.log(photo)
-  // const similarPhotos = Object.values(photo.similar_photos)
 
   return (
     <div className="photo-details-modal">
@@ -19,14 +17,14 @@ const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, click
           toggleFavourites={toggleFavourites}
           photoId={photo.id}
         />
-
       </div>
 
 
       <div className="photo-details-modal__images">
 
         {/* main photo */}
-        <img className="photo-details-modal__image" src={photo.urls.full}></img>
+        <img className="photo-details-modal__image" src={photo.urls.full}>
+        </img>
         {/* photo details */}
 
 
@@ -45,6 +43,7 @@ const PhotoDetailsModal = ({ onClose, photo, toggleFavourites, favourites, click
           photo={photo}
           toggleFavourites={toggleFavourites}
           favourites={favourites}
+          clickedPhoto={clickedPhoto}
         />
 
       </div>
