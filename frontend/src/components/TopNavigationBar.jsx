@@ -9,7 +9,7 @@ const TopNavigation = ({ topics, favourites, onLoadTopic }) => {
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={topics} onLoadTopic={onLoadTopic} />
       <FavBadge isFavPhotoExist={favourites.length > 0}
-        selected={favourites.length > 0} />
+        selected={true} />
     </div>
   )
 };
