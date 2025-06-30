@@ -38,7 +38,7 @@ const PhotoDetailsModal = ({ onCloseModal, photo, toggleFavourites, favourites, 
         </div>
 
         <h3 className="photo-details-modal__images">Similar photos</h3>
-       { <PhotoList
+        {<PhotoList
           photos={photo.similar_photos}
           photo={photo}
           toggleFavourites={toggleFavourites}

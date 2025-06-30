@@ -17,7 +17,7 @@ const PhotoList = ({ photos, favourites, toggleFavourites, onPhotoSelect }) => {
           toggleFavourites={toggleFavourites}
           favourites={favourites}
           onPhotoSelect={onPhotoSelect}
-          photo={photo}              
+          photo={photo}
         />
       ))}
     </ul>
