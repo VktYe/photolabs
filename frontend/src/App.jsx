@@ -4,6 +4,8 @@ import HomeRoute from './routes/HomeRoute';
 // import topics from './mocks/topics';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import useApplicationData from './hooks/useApplicationData';
+import LikedPhotosModal from './routes/LikedPhotosModal';
+import { useState } from 'react';
 
 
 // Note: Rendering a single component to build components in isolation
@@ -17,6 +19,10 @@ const App = () => {
   } = useApplicationData();
   const { favourites, modal, photoDetails, photoData, topicData } = state;
 
+  const [likedPhotosModal, setLikePhotosModal] = useState(false);
+  const onLikedPhotosClick = () => setLikePhotosModal(prev => !prev);
+  const onLikedClose = () => setLikePhotosModal(false);
+  console.log("Modal open", likedPhotosModal)
 
   return (
     <div className="App" >
@@ -27,6 +33,8 @@ const App = () => {
         topics={topicData}
         onPhotoSelect={onPhotoSelect}
         onLoadTopic={onLoadTopic}
+        onLikedPhotosClick={onLikedPhotosClick}
+
       />
       {modal && (<PhotoDetailsModal
         onCloseModal={onClosePhotoDetailsModal}
@@ -37,6 +45,9 @@ const App = () => {
         onPhotoSelect={onPhotoSelect}
 
       />)}
+      {likedPhotosModal && <LikedPhotosModal 
+      onClose={onLikedClose}
+      />}
     </div>
   );
 };

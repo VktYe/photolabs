@@ -7,10 +7,12 @@
 const LikedPhotosModal = () => {
 
   return (
-    <div >
+    <div className="photo-details-modal">
       Liked Photos here!
 
     </div>
 
   )
 }
+
+export default LikedPhotosModal;
