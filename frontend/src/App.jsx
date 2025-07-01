@@ -46,7 +46,13 @@ const App = () => {
 
       />)}
       {likedPhotosModal && <LikedPhotosModal 
-      onClose={onLikedClose}
+        onClose={onLikedClose}
+        photo={photoDetails}
+        photos={photoData}
+        toggleFavourites={updateToFavPhotoIds}
+        favourites={favourites}
+        onPhotoSelect={onPhotoSelect}
+
       />}
     </div>
   );
