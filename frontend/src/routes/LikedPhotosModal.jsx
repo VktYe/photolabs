@@ -20,14 +20,18 @@ const LikedPhotosModal = ({ onClose, photos, toggleFavourites, favourites, onPho
       <div className="photo-details-modal__images">
 
 
-        <h3 className="photo-details-modal__images">Photos You Liked</h3>
-        {<PhotoList
-          
+        <h2 className="photo-details-modal__images">Photos You Liked</h2>
+        {likedPhotos.length > 0 ? (<PhotoList
+
           photos={likedPhotos}
           toggleFavourites={toggleFavourites}
           favourites={favourites}
           onPhotoSelect={onPhotoSelect}
-        />}
+        />) : (
+          <p>
+            You haven't liked any photos yet
+          </p>
+        )}
 
       </div>
     </div>
